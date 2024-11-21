@@ -1,0 +1,10 @@
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\CnfaBackendApplication.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Controllers\FarmerController.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Entities\Farmers.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Entities\FarmersDTO.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Exceptions\LockedException.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Exceptions\ResourceNotFoundException.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Exceptions\UnauthorizedAccessException.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Reposititories\FarmerRepository.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\Services\FarmerService.java
+C:\Users\1\OneDrive\Desktop\CNFABackend\CNFABackend\src\main\java\com\example\CNFABackend\WebConfig.java

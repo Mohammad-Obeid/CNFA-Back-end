@@ -1,0 +1,10 @@
+com\example\CNFABackend\CnfaBackendApplication.class
+com\example\CNFABackend\Entities\Farmers.class
+com\example\CNFABackend\Reposititories\FarmerRepository.class
+com\example\CNFABackend\Entities\FarmersDTO.class
+com\example\CNFABackend\WebConfig.class
+com\example\CNFABackend\Exceptions\LockedException.class
+com\example\CNFABackend\Services\FarmerService.class
+com\example\CNFABackend\Controllers\FarmerController.class
+com\example\CNFABackend\Exceptions\UnauthorizedAccessException.class
+com\example\CNFABackend\Exceptions\ResourceNotFoundException.class
