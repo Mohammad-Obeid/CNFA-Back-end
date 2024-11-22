@@ -31,7 +31,7 @@ public class FarmerController {
                         .body(null));
     }
     @GetMapping("/page")
-    public int getNumOfPagesForPendingShopOrders(
+    public int getNumOfPages(
     ){
         int num= farmerSer.getNumOfPages();
         return num;
