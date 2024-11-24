@@ -120,4 +120,27 @@ public class UserController {
                         .body(null));
     }
 
+    //reset Account Password
+    @PatchMapping("/{userName}")
+    public ResponseEntity<Boolean> resetPassword(@PathVariable String userName,@RequestBody resetPassword pass) {
+        Optional<Boolean> result= Optional.ofNullable(userService.resetPassword(userName,pass));
+        return result.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(null));
+    }
+
+
+    @GetMapping("/check")
+    public CheckResponse checkExistence(@RequestParam(required = false) String username,
+                                        @RequestParam(required = false) String email) {
+        boolean exists = false;
+
+        if (username != null) {
+            exists = userService.usernameExists(username);
+        } else if (email != null) {
+            exists = userService.emailExists(email);
+        }
+
+        return new CheckResponse(exists);
+    }
 }

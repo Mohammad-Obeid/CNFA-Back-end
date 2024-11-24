@@ -72,9 +72,13 @@ public class UserService {
     }
 
     public UserDTO Signup(Signup signup) {
-        User userch = getUserpr(signup.getEmail());
+        User userch = userRepo.findByEmail(signup.getEmail());
         if(userch!=null) {
-            throw new IllegalArgumentException("Passwords do not match");
+            throw new IllegalArgumentException("UserEmail Exists");
+        }
+        userch = userRepo.findByUsername(signup.getUserName());
+        if(userch!=null) {
+            throw new IllegalArgumentException("UserName Exists");
         }
         if(signup.getPassword().equals(signup.getConfirmPassword())) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -126,8 +130,8 @@ public class UserService {
     }
 
     public List<UserDTO> getEmployeesStartingWithName(String name) {
-        Optional<List<User>> farmers = userRepo.findUsersByUsernameStartingWithAndRule(name.toLowerCase(),"Employee");
-        return farmers.orElse(Collections.emptyList()) // Use an empty list if not present
+        Optional<List<User>> employees = userRepo.findUsersByUsernameStartingWithAndRule(name.toLowerCase(),"Employee");
+        return employees.orElse(Collections.emptyList()) // Use an empty list if not present
                 .stream() // Stream over the list, not the Optional
                 .map(this::MapToDTO)
                 .collect(Collectors.toList());
@@ -142,10 +146,30 @@ public class UserService {
     }
 
     public List<UserDTO> getAdminsStartingWithName(String name) {
-        Optional<List<User>> farmers = userRepo.findUsersByUsernameStartingWithAndRule(name.toLowerCase(),"ADMIN");
-        return farmers.orElse(Collections.emptyList()) // Use an empty list if not present
+        Optional<List<User>> users = userRepo.findUsersByUsernameStartingWithAndRule(name.toLowerCase(),"ADMIN");
+        return users.orElse(Collections.emptyList()) // Use an empty list if not present
                 .stream() // Stream over the list, not the Optional
                 .map(this::MapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Boolean resetPassword(String userName, resetPassword pass) {
+        Optional<User> user = Optional.ofNullable(userRepo.findByUsername(userName));
+        if(user.isEmpty())return null;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if(encoder.matches(pass.getOldPassword(), user.get().getPassword())) {
+            user.get().setPassword(encoder.encode(pass.getNewPassword()));
+            userRepo.save(user.get());
+            return true;
+        }
+        return null;
+    }
+
+    public boolean usernameExists(String username) {
+        return userRepo.existsByUsername(username);
+    }
+
+    public boolean emailExists(String email) {
+        return userRepo.existsByEmail(email);
     }
 }

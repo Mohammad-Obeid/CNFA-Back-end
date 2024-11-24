@@ -18,4 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<List<User>> findUsersByUsernameStartingWithAndRule(String name,String rule);
     long countByRule(String rule);
 
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
+
 }
