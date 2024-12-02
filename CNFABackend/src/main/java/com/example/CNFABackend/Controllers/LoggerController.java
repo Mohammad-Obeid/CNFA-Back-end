@@ -1,7 +1,6 @@
 package com.example.CNFABackend.Controllers;
 
-import com.example.CNFABackend.Entities.LoggerDTO;
-import com.example.CNFABackend.Entities.UserDTO;
+import com.example.CNFABackend.Entities.DTO.LoggerDTO;
 import com.example.CNFABackend.Services.LoggerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

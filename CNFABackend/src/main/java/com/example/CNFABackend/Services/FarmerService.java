@@ -1,7 +1,7 @@
 package com.example.CNFABackend.Services;
 
 import com.example.CNFABackend.Entities.Farmers;
-import com.example.CNFABackend.Entities.FarmersDTO;
+import com.example.CNFABackend.Entities.DTO.FarmersDTO;
 import com.example.CNFABackend.Reposititories.FarmerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,7 +43,7 @@ public class FarmerService {
     }
 
     public List<FarmersDTO> getAllFarmers(int pagenum) {
-        PageRequest pageRequest = PageRequest.of(pagenum, 5); // Correct creation of PageRequest
+        PageRequest pageRequest = PageRequest.of(pagenum, 10); // Correct creation of PageRequest
         Page<Farmers> farmersPage = farmerRepo.findAll(pageRequest);
 
         // Return the list of mapped FarmersDTO or an empty list if no farmers are found
@@ -54,7 +54,7 @@ public class FarmerService {
 
     public int getNumOfPages() {
         long totalProducts = farmerRepo.count();
-        return (int) Math.ceil((double) totalProducts / 5);
+        return (int) Math.ceil((double) totalProducts / 10);
     }
 
 
@@ -91,7 +91,7 @@ public class FarmerService {
     }
 
     public List<FarmersDTO> getFarmerStartingWithId(String id) {
-        Optional<List<Farmers>> farmers = farmerRepo.findFarmersByNationalIdStartingWith(id);
+        Optional<List<Farmers>> farmers = farmerRepo.findTop10FarmersByNationalIdStartingWith(id);
         return farmers.orElse(Collections.emptyList()) // Use an empty list if not present
                 .stream() // Stream over the list, not the Optional
                 .map(this::MapToDTO)

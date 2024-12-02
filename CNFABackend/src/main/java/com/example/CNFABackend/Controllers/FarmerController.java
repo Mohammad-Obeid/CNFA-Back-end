@@ -1,9 +1,7 @@
 package com.example.CNFABackend.Controllers;
 
-import com.example.CNFABackend.Entities.FarmersDTO;
+import com.example.CNFABackend.Entities.DTO.FarmersDTO;
 import com.example.CNFABackend.Services.FarmerService;
-import org.hibernate.annotations.NotFound;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

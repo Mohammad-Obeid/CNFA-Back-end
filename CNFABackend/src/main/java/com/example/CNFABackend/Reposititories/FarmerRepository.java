@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface FarmerRepository extends JpaRepository<Farmers,Integer> {
     Optional<Farmers> findFarmersByNationalId(String nationalId);
-    Optional<List<Farmers>> findFarmersByNationalIdStartingWith(String nationalId);
+    Optional<List<Farmers>> findTop10FarmersByNationalIdStartingWith(String nationalId);
     Page<Farmers> findAll(Pageable pageable);
     long count();
 

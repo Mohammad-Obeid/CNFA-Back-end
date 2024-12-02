@@ -1,9 +1,7 @@
 package com.example.CNFABackend.Services;
 
 import com.example.CNFABackend.Entities.Logger;
-import com.example.CNFABackend.Entities.LoggerDTO;
-import com.example.CNFABackend.Entities.User;
-import com.example.CNFABackend.Entities.UserDTO;
+import com.example.CNFABackend.Entities.DTO.LoggerDTO;
 import com.example.CNFABackend.Reposititories.LoggerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

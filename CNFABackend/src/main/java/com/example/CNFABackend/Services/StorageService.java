@@ -1,19 +1,14 @@
 package com.example.CNFABackend.Services;
 
 import com.example.CNFABackend.Entities.Farmers;
-import com.example.CNFABackend.Entities.FarmersDTO;
 import com.example.CNFABackend.Entities.ImageData;
 import com.example.CNFABackend.Reposititories.FarmerRepository;
 import com.example.CNFABackend.Reposititories.StorageRepository;
-import com.example.CNFABackend.Utils.ImageUtils;
-import jakarta.annotation.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,16 +50,15 @@ public class StorageService {
         if(farmer.isPresent()) {
         String base64Images = "";
         Optional<ImageData> image = repository.findByNationalId(nationalID);
+        if(image.isPresent()){
         base64Images+="data:"+image.get().getContentType()+";base64,"+((image.get().getBase64()));
-        return base64Images;
+        return base64Images;}
         }
         return null;
     }
 
 
     public Boolean deleteImage(String nationalId) {
-        Optional<Farmers> farmer = farmerRepository.findFarmersByNationalId(nationalId);
-        if(farmer.isPresent()) {
             Optional<ImageData> img = repository.findByNationalId(nationalId);
             if (img.isPresent()) {
                 repository.delete(img.get());
@@ -72,6 +66,4 @@ public class StorageService {
             }
             return false;
         }
-        return null;
-    }
 }

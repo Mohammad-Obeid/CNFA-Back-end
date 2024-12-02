@@ -1,4 +1,4 @@
-package com.example.CNFABackend.Entities;
+package com.example.CNFABackend.Entities.Checkers;
 
 public class Login {
     private String email;

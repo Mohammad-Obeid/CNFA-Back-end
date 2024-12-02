@@ -1,7 +1,11 @@
 package com.example.CNFABackend.Controllers;
 
 
-import com.example.CNFABackend.Entities.*;
+import com.example.CNFABackend.Entities.Checkers.CheckResponse;
+import com.example.CNFABackend.Entities.Checkers.Login;
+import com.example.CNFABackend.Entities.Checkers.Signup;
+import com.example.CNFABackend.Entities.Checkers.resetPassword;
+import com.example.CNFABackend.Entities.DTO.UserDTO;
 import com.example.CNFABackend.Services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.CNFABackend.Entities;
+package com.example.CNFABackend.Entities.DTO;
 
 import lombok.Getter;
 import lombok.Setter;

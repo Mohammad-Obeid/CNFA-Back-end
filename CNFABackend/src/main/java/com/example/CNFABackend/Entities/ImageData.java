@@ -15,7 +15,6 @@ public class ImageData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nationalId;
     private String contentType;
     @Column(length = 1000000)
