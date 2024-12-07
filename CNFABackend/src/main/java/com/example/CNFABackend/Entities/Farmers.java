@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 @Data
 @Entity
 @Setter
@@ -22,5 +25,8 @@ public class Farmers {
     private String nationalId;
     private String description;
     private boolean is_locked = false;
+    private Timestamp regDate=Timestamp.from(Instant.now());
+    private Timestamp lastModified;
+
 
 }

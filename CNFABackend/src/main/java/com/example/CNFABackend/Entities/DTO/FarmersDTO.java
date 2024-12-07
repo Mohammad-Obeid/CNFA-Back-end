@@ -3,6 +3,8 @@ package com.example.CNFABackend.Entities.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Setter
 @Getter
 public class FarmersDTO {
@@ -13,4 +15,5 @@ public class FarmersDTO {
     private String nationalId;
     private String description;
     private boolean is_locked = false;
+    private Timestamp regDate;
 }

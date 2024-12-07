@@ -5,8 +5,11 @@ import com.example.CNFABackend.Entities.DTO.FarmersDTO;
 import com.example.CNFABackend.Reposititories.FarmerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,7 @@ public class FarmerService {
         farmerD.setNationalId(farmer.getNationalId());
         farmerD.setDescription(farmer.getDescription());
         farmerD.set_locked(farmer.is_locked());
+        farmerD.setRegDate(farmer.getRegDate());
         return farmerD;
     }
 
@@ -39,11 +43,12 @@ public class FarmerService {
         farmer.setNationalId(farmerD.getNationalId());
         farmer.setDescription(farmerD.getDescription());
         farmer.set_locked(farmerD.is_locked());
+        farmer.setRegDate(farmerD.getRegDate());
         return farmer;
     }
 
     public List<FarmersDTO> getAllFarmers(int pagenum) {
-        PageRequest pageRequest = PageRequest.of(pagenum, 10); // Correct creation of PageRequest
+        PageRequest pageRequest = PageRequest.of(pagenum, 10, Sort.by(Sort.Order.desc("lastModified"))); // Correct creation of PageRequest
         Page<Farmers> farmersPage = farmerRepo.findAll(pageRequest);
 
         // Return the list of mapped FarmersDTO or an empty list if no farmers are found
@@ -67,6 +72,8 @@ public class FarmerService {
         Optional<Farmers> farmer =  farmerRepo.findFarmersByNationalId(farmerDTO.getNationalId());
         if(farmer.isPresent()) return null;
         Farmers farmers = MapToFarmer(farmerDTO);
+        farmers.setLastModified(Timestamp.from(Instant.now()));
+        farmers.setRegDate(Timestamp.from(Instant.now()));
         farmerRepo.save(farmers);
         return MapToDTO(farmers);
     }
@@ -79,6 +86,7 @@ public class FarmerService {
         farmer.get().setPhone(farmerDTO.getPhone());
         farmer.get().setNationalId(farmerDTO.getNationalId());
         farmer.get().setDescription(farmerDTO.getDescription());
+        farmer.get().setLastModified(Timestamp.from(Instant.now()));
         farmerRepo.save(farmer.get());
         return MapToDTO(farmer.get());
     }
